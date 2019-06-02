@@ -37,6 +37,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # slim
 gem 'slim-rails'
 
+# slim
+gem 'therubyracer'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails', '~> 3.8'
