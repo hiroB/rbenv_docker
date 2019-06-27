@@ -1,4 +1,4 @@
-FROM ruby:2.6.2
+FROM ruby:2.6.3
 ENV LANG C.UTF-8
 
 ENV SETUP_HOME /opt/ruby
@@ -14,7 +14,7 @@ RUN apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev lib
 
 # install rbenv
 # see: https://github.com/rbenv/rbenv/releases
-RUN RBENV_VERSION="v1.1.1" \
+RUN RBENV_VERSION="v1.1.2" \
   && git clone https://github.com/rbenv/rbenv.git "${RBENV_ROOT}" \
   && cd "${RBENV_ROOT}" \
   && git checkout "${RBENV_VERSION}" \
@@ -24,7 +24,7 @@ RUN RBENV_VERSION="v1.1.1" \
 # install ruby-build
 # see: https://github.com/rbenv/ruby-build/releases
 RUN RUBY_BUILD_DIR="${RBENV_ROOT}/plugins/ruby-build" \
-  && RUBY_BUILD_VERSION="v20190314" \
+  && RUBY_BUILD_VERSION="v20190615" \
   && mkdir -p "${RBENV_ROOT}/plugins" \
   && git clone https://github.com/rbenv/ruby-build.git "${RUBY_BUILD_DIR}" \
   && cd "${RUBY_BUILD_DIR}" \
@@ -32,10 +32,10 @@ RUN RUBY_BUILD_DIR="${RBENV_ROOT}/plugins/ruby-build" \
   && rm -rf .git
 
 # install runtimes and bundler
-ENV BUNDLE_JOBS=4 BUNDLE_PATH=/bundle BUNDLER_VERSION=2.0.1
-ENV CURRENT_RUBY_VERSION=2.6.2
+ENV BUNDLE_JOBS=4 BUNDLE_PATH=/bundle BUNDLER_VERSION=2.0.2
+ENV CURRENT_RUBY_VERSION=2.6.3
 RUN unset GEM_HOME \
-  && for version in "2.4.1" "2.5.0" "2.6.2"; do \
+  && for version in "2.6.3"; do \
     rbenv install "${version}" \
     && rbenv global "${version}" \
     && echo 'gem: --no-rdoc --no-ri' >> /.gemrc \
@@ -49,4 +49,4 @@ RUN unset GEM_HOME \
 RUN mkdir /app
 WORKDIR /app
 
-EXPOSE 3000 8090
+EXPOSE 3000 8090 10801
