@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     #bundle exec unicorn_rails -c config/unicorn.rb -E development -D
     ports:
-      - "3000:3000"
+      - "10801:10801"
     volumes:
       - .:/app
     tty: true

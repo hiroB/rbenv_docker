@@ -7,18 +7,15 @@ Things you may want to cover:
 
 * Ruby version
 
-* System dependencies
+2.6.3
 
-* Configuration
+* Start Application
 
-* Database creation
+# bundle install for local directory
+bundle install --path vendor/bundle
 
-* Database initialization
+# create secret key
+bundle exec rake secret
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# start unicorn
+SECRET_KEY_BASE="[SECRET_KEY]" RAILS_ENV=development bundle exec unicorn_rails -c config/unicorn.rb -D
