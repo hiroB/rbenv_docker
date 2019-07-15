@@ -1,0 +1,10 @@
+version: '3'
+services:
+  dind:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+        - ..:/app
+    working_dir: /app
+    command: bundle install --path vendor/bundle
